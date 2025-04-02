@@ -12,7 +12,7 @@
 
 # testing
 /coverage
-
+service_key.json
 # next.js
 /.next/
 /out/
