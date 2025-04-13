@@ -9,6 +9,7 @@ function Document({id}: {id:string}) {
     const [data, loading, error] = useDocumentData(doc(db, "documents", id));
     const [input , setInput] = useState<string>("")
     const [isUpdating, startTransition] = useTransition()
+    // const isOwner = useOwner()
 
     useEffect(() => {
         if(data){
