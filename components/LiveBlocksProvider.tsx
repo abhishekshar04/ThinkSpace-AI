@@ -1,7 +1,8 @@
 'use client'
 import {LiveblocksProvider} from "@liveblocks/react/suspense"
 function LiveBlocksProvider({children}: {children: React.ReactNode}) {
-    if(!process.env.live_block_public_key){
+  console.log(process.env.NEXT_PUBLIC_LIVEBLOCK_PUBLIC_KEY)
+    if(!process.env.NEXT_PUBLIC_LIVEBLOCK_PUBLIC_KEY){
         throw new Error("Missing LiveBlocks public key in environment variables")
     }
   return (
