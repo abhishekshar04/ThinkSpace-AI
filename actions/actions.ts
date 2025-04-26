@@ -23,6 +23,27 @@ export async function createNewDocument() {
     return {docId: docRef.id};
 }
 
+export async function inviteUserToDocument(roomId: string, email: string) {
+    auth.protect();
+    try {
+        await adminDB
+            .collection("users")
+            .doc(email)
+            .collection("rooms")
+            .doc(roomId)
+            .set({
+                userId: email,
+                role: "editor",
+                createdAt: new Date(),
+                roomId: roomId
+            });
+        return {success: true};
+    } catch (error) {
+        console.error("Error inviting user: ", error);
+        return {success: false};
+    }
+}
+
 export async function deleteDocument(roomId: string) {
     auth.protect();
     console.log("Deleting document with roomId: ", roomId);
@@ -41,5 +62,24 @@ export async function deleteDocument(roomId: string) {
     } catch (error) {
         console.error("Error deleting document: ", error);
         return {success: false};
+    }
+}
+
+export async function removeUserFromDocument(roomId: string, email: string) {
+    auth.protect();
+    try {
+        await adminDB
+                .collection("users")
+                .doc(email)
+                .collection("rooms")
+                .doc(roomId)
+                .delete();
+        return {sucsess: true};
+
+
+    } catch (error) {
+        console.error("Error removing user: ", error);
+        return {sucsess: false};
+
     }
 }

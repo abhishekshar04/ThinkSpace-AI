@@ -26,6 +26,7 @@ function DeleteDocument() {
         startTransition(async () => {
             const {success} = await deleteDocument(roomId);
             if(success){
+                setIsOpen(false)
                 router.replace("/");
                 toast.success("Document deleted successfully!")
             }else{
