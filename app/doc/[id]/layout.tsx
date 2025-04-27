@@ -4,14 +4,15 @@ import { ReactNode } from "react";
 
 type LayoutProps = {
   children: ReactNode;
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 async function DocLayout({ children, params }: LayoutProps) {
+  const { id } = await params;  // Wait for the params promise to resolve
   auth.protect();
-  
+
   return (
-    <RoomProvider roomId={params.id}>{children}</RoomProvider>
+    <RoomProvider roomId={id}>{children}</RoomProvider>
   );
 }
 
