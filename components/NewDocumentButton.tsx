@@ -11,6 +11,8 @@ function NewDocumentButton() {
   const pathname = usePathname();
 
   const handleCreateNewDocument = () => {
+    if (isPending) return; // Prevent multiple clicks while document is being created
+
     startTransition(async () => {
       const { docId } = await createNewDocument();
 
@@ -20,7 +22,13 @@ function NewDocumentButton() {
       }
 
       const newPath = `/doc/${docId}`;
-      if (pathname !== newPath) {
+
+      // If we're on a document path, replace it with the new document's path
+      // Check if the current path starts with "/doc/" and replace it entirely
+      if (pathname.startsWith("/doc/")) {
+        router.replace(newPath); // Replace to avoid concatenation of "/doc/"
+      } else {
+        // If we're not on a document page, just navigate to the new document
         router.push(newPath);
       }
     });

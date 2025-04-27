@@ -88,7 +88,7 @@ function Sidebar() {
                 <>
                     <h2 className="text-sm font-semibold text-gray-500">Shared with me</h2>
                     {groupedData.editor.map((room) => (
-                        <SidebarOption key={room.id} id={room.id} href={`doc/${room.id}`} />
+                        <SidebarOption key={room.id} id={room.id} href={`/doc/${room.id}`} />
                     ))}
                 </>
             )}
