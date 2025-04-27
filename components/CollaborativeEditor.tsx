@@ -17,8 +17,7 @@ import stringToColor from "@/lib/stringToColor";
 import { useCreateBlockNoteWithLiveblocks } from "@liveblocks/react-blocknote";
 type EditorProps = {
     doc: Y.Doc;
-    // @ts-ignore
-    provider: any;
+    provider: LiveblocksYjsProvider;
     darkMode: boolean;
 }
 
