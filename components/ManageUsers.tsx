@@ -4,24 +4,20 @@ import {
     DialogClose,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
 import { FormEvent, startTransition, useState, useTransition } from "react"
 import { Button } from "./ui/button"
-import { usePathname, useRouter } from "next/navigation"
-import { deleteDocument, inviteUserToDocument, removeUserFromDocument } from "@/actions/actions"
+import { removeUserFromDocument } from "@/actions/actions"
 import { toast } from "sonner"
-import { Input } from "./ui/input"
 import { useUser } from "@clerk/nextjs"
 import useOwner from "@/lib/useOwner"
 import { useRoom } from "@liveblocks/react"
 import { useCollection } from "react-firebase-hooks/firestore"
 import { collectionGroup, query, where } from "firebase/firestore"
 import { db } from "@/firebase"
-import { start } from "repl"
   
 function ManageUsers() {
     const {user} = useUser();

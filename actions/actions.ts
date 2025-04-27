@@ -3,7 +3,6 @@
 import { adminDB } from "@/firebase-admin";
 import liveblocks from "@/lib/liveblocks";
 import { auth } from "@clerk/nextjs/server";
-import { createDecipheriv } from "crypto";
 
 export async function createNewDocument() {
     auth.protect();

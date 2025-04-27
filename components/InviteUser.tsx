@@ -1,7 +1,6 @@
 'use client'
 import {
     Dialog,
-    DialogClose,
     DialogContent,
     DialogDescription,
     DialogFooter,
@@ -12,14 +11,13 @@ import {
 import { FormEvent, startTransition, useState, useTransition } from "react"
 import { Button } from "./ui/button"
 import { usePathname, useRouter } from "next/navigation"
-import { deleteDocument, inviteUserToDocument } from "@/actions/actions"
+import { inviteUserToDocument } from "@/actions/actions"
 import { toast } from "sonner"
 import { Input } from "./ui/input"
   
 function InviteUser() {
     const [email, setEmail] = useState<string>("")
     const [isOpen, setIsOpen] = useState(false)
-    const router = useRouter()
     const [isPending, startTransition] = useTransition();
     const pathname = usePathname(); 
     const handleInvite  = async (e: FormEvent) => {
