@@ -8,11 +8,10 @@ type LayoutProps = {
 };
 
 async function DocLayout({ children, params }: LayoutProps) {
-  const { id } = params;
   auth.protect();
   
   return (
-    <RoomProvider roomId={id}>{children}</RoomProvider>
+    <RoomProvider roomId={params.id}>{children}</RoomProvider>
   );
 }
 
