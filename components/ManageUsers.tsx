@@ -1,14 +1,13 @@
 'use client'
 import {
     Dialog,
-    DialogClose,
     DialogContent,
     DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
-import { FormEvent, startTransition, useState, useTransition } from "react"
+import { useState, useTransition } from "react"
 import { Button } from "./ui/button"
 import { removeUserFromDocument } from "@/actions/actions"
 import { toast } from "sonner"

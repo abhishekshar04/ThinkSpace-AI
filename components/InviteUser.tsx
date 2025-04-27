@@ -3,14 +3,13 @@ import {
     Dialog,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
-import { FormEvent, startTransition, useState, useTransition } from "react"
+import { FormEvent, useState, useTransition } from "react"
 import { Button } from "./ui/button"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { inviteUserToDocument } from "@/actions/actions"
 import { toast } from "sonner"
 import { Input } from "./ui/input"
