@@ -9,6 +9,7 @@ import useOwner from "@/lib/useOwner"
 import DeleteDocument from "./DeleteDocument"
 import InviteUser from "./InviteUser"
 import ManageUsers from "./ManageUsers"
+import Avatars from "./Avatars"
 
 function Document({id}: {id:string}) {
     const [data] = useDocumentData(doc(db, "documents", id));
@@ -60,10 +61,11 @@ function Document({id}: {id:string}) {
             </form>
         </div>
 
-        <div className="flex max-w-6xl items-center mb-5 mx-auto justify-between">
+        <div className="flex max-w-5xl items-center mb-5 mx-auto justify-between">
             {/* {Manage Users} */}
             <ManageUsers />
             {/* Avatars */}
+            <Avatars />
         </div>
 
         <hr className="pb-10 mx-20"/>
