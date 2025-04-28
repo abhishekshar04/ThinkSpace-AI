@@ -4,13 +4,20 @@ import { useRouter, usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import { useTransition } from "react";
 import { createNewDocument } from "@/actions/actions";
+import { useAuth } from "@clerk/clerk-react"; // Import Clerk's useAuth hook
 
 function NewDocumentButton() {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const pathname = usePathname();
+  const { isSignedIn } = useAuth(); // Get the authentication status from Clerk
 
   const handleCreateNewDocument = () => {
+    if (!isSignedIn) {
+      console.error("User is not authenticated.");
+      return; // Prevent creating a new document if not logged in
+    }
+
     if (isPending) return; // Prevent multiple clicks while document is being created
 
     startTransition(async () => {
@@ -36,9 +43,15 @@ function NewDocumentButton() {
 
   return (
     <div>
-      <Button onClick={handleCreateNewDocument} disabled={isPending}>
-        {isPending ? "Creating..." : "New Document"}
-      </Button>
+      {isSignedIn ? (
+        <Button onClick={handleCreateNewDocument} disabled={isPending}>
+          {isPending ? "Creating..." : "New Document"}
+        </Button>
+      ) : (
+        <Button disabled>
+          Please log in to create a new document
+        </Button>
+      )}
     </div>
   );
 }
